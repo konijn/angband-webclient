@@ -45,6 +45,12 @@ From there I had to run
 `mongod --repair`
 `sudo service mongodb start`
 
+** Setting CUSTOM_HOME **
+The code by default will have everything point `/home/angbandlive`.
+This is most likely not relevant to you, so set CUSTOM_HOME to a relevant location
+
+
+
 
 
 
