@@ -65,4 +65,27 @@ From there I had to run
 
 `sudo service mongodb start`
 
+**Changes to Hellband**
+
+A separate makefile was made, highlights are
+* Do no use private user paths, it will not work
+* Set `DEFAULT_PATH` since binaries and the `lib` folder are not expected in the same place
+* If any path uses `~`, then the `stat` function will not work on that path
+
+**Changes to angband-client**
+
+I hope Gwarl will accept some patches, but for now:
+* Change `lib.js`
+  * Do not console.log(args), but console.log(termdesc), this saves so much troubleshooting time
+* Change `app.js`
+  * There is a hardcoded reference to `/home/angbandlive` which should be adjusted
+      * Add `var home          = process.env.CUSTOM_HOME || '/home/angbandlive';`
+      * Go for `app.use(express.static(home + '/public/user'));`
+  
+
+
+
+
+
+
 
