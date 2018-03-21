@@ -14,6 +14,10 @@ var awc           = require('./lib.js');
 var LocalStrategy = require('passport-local').Strategy;
 var Account       = require('./models/account');
 var fs            = require('fs-extra');
+var home          = process.env.CUSTOM_HOME || '/home/angbandlive';
+
+//Indicate where we think home is
+console.log('Home is set to', home);
 
 //set up our pinging
 setInterval(function(){awc.keepalive()},10000);
@@ -31,7 +35,7 @@ app.use(cookieParser());
 app.use(session({name: 'session',keys: ['air', 'fire', 'water']}));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('/home/angbandlive/public/user'));
+app.use(express.static(home + '/public/user'));
 
 // Configure passport middleware
 app.use(passport.initialize());

@@ -231,7 +231,7 @@ function newgame(user,msg){
 		args:args,
 		terminfo: terminfo
 	};
-	console.log(args);
+	console.log(termdesc);
 	try {
 		var term = pty.fork(termdesc.path,termdesc.args,{
 			name: termdesc.terminfo,
