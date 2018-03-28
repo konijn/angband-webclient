@@ -119,4 +119,9 @@ Place this in etc/init.d (I called it hellband-webclient)
      sudo chmod a+x /etc/init.d/SERVICE
      sudo update-rc.d SERVICE defaults
 
-Then run sudo service SERVICE start
+Then run `sudo service SERVICE start`
+
+If you change the service file, run `systemctl daemon-reload`
+
+
+
