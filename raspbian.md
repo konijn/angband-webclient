@@ -88,3 +88,35 @@ I hope Gwarl will accept some patches, but for now:
 
 The code by default will have everything point `/home/angbandlive`.
 This is most likely not relevant to you, so set CUSTOM_HOME to a relevant location with `export`
+
+**Creating a service**
+
+From https://thomashunter.name/blog/running-a-node-js-process-on-debian-as-an-init-d-service/
+`sudo npm install -g forever`
+`sudo mkdir /var/run/forever`
+
+Place this in etc/init.d (I called it hellband-webclient)
+
+    #!/bin/sh
+
+    export CUSTOM_HOME=~/hellband-live
+
+    case "$1" in
+      start)
+      exec forever --sourceDir=<wherever your reps are>/angband-webclient/ -p /var/run/forever start ./bin/www
+      ;;
+
+      stop)
+      exec forever stop --sourceDir=<wherever your reps are>/angband-webclient/ ./bin/www
+      ;;
+    esac
+
+    exit 0
+    
+ Then run the following the file (I replaced SERVICE with hellband-webclient)
+ 
+     sudo touch /etc/init.d/SERVICE
+     sudo chmod a+x /etc/init.d/SERVICE
+     sudo update-rc.d SERVICE defaults
+
+Then run sudo service SERVICE start
